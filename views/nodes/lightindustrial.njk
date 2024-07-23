@@ -1,0 +1,52 @@
+{% set pageTitle = 'Light Industrial' %}
+{% set pageDescription = 'Новый формат коммерческой недвижимости' %}
+
+{% extends "layouts/default.njk" %}
+
+{% block mainContent %}
+
+    <section class="section section__shadow-2" id="lightindustrial-block">
+        <div class="container">
+            <h1 class="showroom__title">Light Industrial</h1>
+            <div class="showroom__subtitle">Новый формат коммерческой недвижимости</div>
+
+            <div class="contact__content">
+                <div data-react-component="gallery"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--nopadding">
+        <div data-react-component="presentation"></div>
+    </section>
+
+    <section class="section section--nopadding showroom__section">
+        <div class="container">
+            <div class="showroom__frame flex flex--center">
+                <div class="showroom__frame--left">
+                    <img src="/img/pics/li_inside1.webp" alt="Light industrial picture" />
+                </div>
+                <div class="showroom__frame--right">
+                    <img src="/img/pics/li_inside2.webp" alt="Light industrial picture" />
+                </div>
+            <div>
+        </div>
+    </section>
+
+    <section class="showroom__section">
+        <div class="showroom__text flex flex--center">
+            <p class="presentation__text">Благодаря сочетанию различных функциональных зон в одном комплексе, можно эффективно организовать производственный процесс, хранение товаров, а также представление продукции в шоу-румах.</p>
+        </div>
+    </section>
+
+    <section class="section section__shadow-2" id="lightindustrial-form">
+        <div class="container">
+            <h2>Поможем подобрать помещение</h2>
+
+            <div class="contact__content">
+                <div data-react-component="contactForm"></div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

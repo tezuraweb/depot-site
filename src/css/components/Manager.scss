@@ -1,0 +1,101 @@
+.manager {
+    color: $black;
+    font-size: 24px;
+
+    &__name {
+        margin-bottom: 55px;
+    }
+
+    &__text {
+        display: inline-block;
+        max-width: 690px;
+        padding-left: 50px;
+    }
+
+    &__photo {
+        display: inline-block;
+        margin-right: 112px;
+        width: 224px;
+        height: 224px;
+        object-fit: cover;
+        border: 5px solid $yellow;
+
+    }
+
+    &__quot {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+
+        &--top {
+            padding-top: 10px;
+            align-self: flex-start;
+
+            &::before {
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-image: url('../../assets/img/pictures/quot_top.webp');
+                background-repeat: no-repeat;
+            }
+        }
+
+        &--bottom {
+            padding-bottom: 10px;
+            align-self: flex-end;
+
+            &::before {
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-image: url('../../assets/img/pictures/quot_bottom.webp');
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        &__photo {
+            margin-right: 80px;
+            width: 327px;
+            height: 327px;
+        }
+
+        &__text {
+            max-width: unset;
+            padding-left: 45px;
+        }
+    }
+
+    @media (max-width: ($laptop-breakpoint - 1)) {
+        &__content {
+            flex-direction: column;
+        }
+
+        &__photo {
+            margin-right: 0;
+            margin-bottom: 50px;
+            align-self: center;
+        }
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        &__photo {
+            width: 280px;
+            height: 280px;
+            margin-bottom: 40px;
+        }
+
+        &__name {
+            font-size: 14px;
+        }
+
+        &__text {
+            padding-left: 40px;
+            font-size: 14px;
+        }
+    }
+}

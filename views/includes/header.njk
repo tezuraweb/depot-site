@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="header {% if hideLogin %} header--backoffice{% endif %}">
+        <a href="/" class="header__logo">
+            {% set includeIcon = 'mainLogo' %}
+            {% include "includes/svg.njk" %}
+        </a>
+        <a href="/" class="header__logoMobile">
+            {% set includeIcon = 'mainLogoMobile' %}
+            {% include "includes/svg.njk" %}
+        </a>
+        {% if navs %}
+            <nav class="header__nav nav nav--desktop">
+                <ul class="nav__list">
+                    {% for item in navs.slice(0, 2) %}
+                        {% set navLinkModifier = '' %}
+                        {% if activePage == 'main' and loop.first %}
+                            {% set navLinkModifier = 'nav__link--yellow' %}
+                        {% elif activePage == item.link %}
+                            {% set navLinkModifier = 'nav__link--active' %}
+                        {% endif %}
+
+                        <li class="nav__item">
+                            <a class="nav__link {{ navLinkModifier }}" href="{{ item.link }}">{{ item.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endif %}
+
+        {% if contacts %}
+            <div class="header__contacts header__contacts--desktop">
+                <a class="header__phone" href="{{ contacts.phone.link }}">{{ contacts.phone.title }}</a>
+
+                <ul class="header__socials socials">
+                    {% for item in contacts.socials %}
+                        <li class="socials__item">
+                            <a class="socials__link" href="{{ item.link }}" target="_blank" rel="nofollow noopener" aria-label="{{ item.title }}">
+                                {% set includeIcon = item.icon %}
+                                {% include "includes/svg.njk" %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if user %}
+            <a class="header__auth{% if hideLogin %} header__auth--backoffice{% else %} header__auth--desktop{% endif %}" href="/auth/logout">Выйти</a>
+        {% elif not hideLogin %}
+            <a class="header__auth header__auth--desktop" href="/auth/login" aria-label="Войти в кабинет арендатора">
+                <div class="header__auth--icon">
+                    {% set includeIcon = 'authIcon' %}
+                    {% include "includes/svg.njk" %}
+                </div>
+                <div class="header__auth--text">Кабинет арендатора</div>
+            </a>
+        {% endif %}
+
+        {% if navs %}
+            <input class="header__burger--checkbox" type="checkbox" id="burgerCheckbox"/>
+            <label class="header__burger--icon button button--icon" for="burgerCheckbox">
+                {% set includeIcon = 'burgerIcon' %}
+                {% include "includes/svg.njk" %}
+            </label>
+
+            <nav class="header__navMobile nav nav--mobile">
+                <ul class="nav__list">
+                    {% for item in navs %}
+                        <li class="nav__item">
+                            <a class="nav__link {{ navLinkModifier }}" href="{{ item.link }}">{{ item.title }}</a>
+                        </li>
+                    {% endfor %}
+
+                    <li class="nav__item--contacts">
+                        <div class="header__contacts">
+                            <a class="header__phone" href="{{ contacts.phone.link }}">{{ contacts.phone.title }}</a>
+
+                            <ul class="header__socials socials">
+                                {% for item in contacts.socials %}
+                                    <li class="socials__item">
+                                        <a class="socials__link" href="{{ item.link }}" target="_blank" rel="nofollow noopener" aria-label="{{ item.title }}">
+                                            {% set includeIcon = item.icon %}
+                                            {% include "includes/svg.njk" %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav__item--auth">
+                        {% if user %}
+                            <a class="header__auth" href="/logout">Выйти</a>
+                        {% elif not hideLogin %}
+                            <a class="header__auth" href="/auth/login" aria-label="Войти в кабинет арендатора">
+                                <div class="header__auth--icon">
+                                    {% set includeIcon = 'authIcon' %}
+                                    {% include "includes/svg.njk" %}
+                                </div>
+                                <div class="header__auth--text">Кабинет арендатора</div>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+</div>

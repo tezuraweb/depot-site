@@ -1,0 +1,132 @@
+.nav {
+    &__list {
+        display: flex;
+    }
+
+    &__link {
+        display: block;
+        position: relative;
+        padding: 45px 60px;
+        color: $white;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: calc(100% - 120px);
+            height: 5px;
+            background-color: $yellow;
+            transition: transform .3s;
+            transform: translateX(-50%) scaleX(0);
+        }
+
+        &--active {
+            font-weight: 700;
+        }
+
+        &:hover::after,
+        &--active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        &--yellow {
+            background-color: $yellow;
+            color: $black;
+            transition: background-color .3s, color .3s;
+
+            &:hover {
+                background-color: transparent;
+                color: $white;
+            }
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    // modifiers
+
+    &--mobile {
+        .nav__list {
+            flex-direction: column;
+            background-color: $black;
+            padding-bottom: 15px;
+        }
+
+        .nav__item {
+            &:first-child,
+            &--contacts,
+            &--auth {
+                display: none;
+            }
+        }
+
+        .nav__link {
+            background-color: transparent;
+            color: $white;
+            padding: 15px 70px;
+            transition: background-color .3s, color .3s;
+
+            &::after {
+                display: none;
+            }
+
+            &:hover {
+                background-color: $yellow;
+                color: $black;
+            }
+        }
+    }
+
+    // media
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        &__link {
+            padding: 40px 25px;
+
+            &::after {
+                width: calc(100% - 50px);
+            }
+        }
+    }
+
+    @media (max-width: ($laptop-breakpoint - 1)) {
+        // modifiers
+
+        &--desktop {
+            .nav__item {
+                &:last-child {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media (max-width: ($tablet-breakpoint - 1)) {
+        &--desktop {
+            display: none;
+        }
+
+        &--mobile {
+            .nav__item {
+                &:first-child,
+                &--contacts,
+                &--auth {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        &--mobile {    
+            .nav__link {
+                font-size: 18px;
+                padding: 15px 30px;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{% set pageTitle = 'Отчет - Депо' %}
+{% set pageDescription = 'АО “Депо” Отчет данных аренды' %}
+
+{% extends "layouts/backoffice.njk" %}
+
+{% block mainContent %}
+
+    <section class="section section--nopadding" id="report">
+        <div class="container container--nopadding">
+            <div class="page__backoffice">
+                <div class="page__backoffice--column page__backoffice--first">
+                    <div class="page__backoffice--sticky">
+                        {% include "includes/backoffice-menu.njk" %}
+                    </div>
+                </div>
+
+                <div class="page__backoffice--column page__backoffice--second">
+                    <div class="page__backoffice--content">
+                        <div data-react-component="webReport"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

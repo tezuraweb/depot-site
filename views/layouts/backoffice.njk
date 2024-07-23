@@ -1,0 +1,42 @@
+{% set hideLogin = true %}
+
+{% set contacts = {
+    phone: {
+        link: 'tel:+79120557755',
+        title: '+7 (912) 055-77-55'
+    },
+    socials: [
+        {
+            link: '',
+            type: 'telegram',
+            icon: 'telegramIcon',
+            title: 'Telegram'
+        },
+        {
+            link: '',
+            type: 'whatsapp',
+            icon: 'whatsappIcon',
+            title: 'WhatsApp'
+        },
+        {
+            link: '',
+            type: 'viber',
+            icon: 'viberIcon',
+            title: 'Viber'
+        }
+    ]
+} %}
+
+{% extends "layouts/body.njk" %}
+
+{% block bodyContent %}
+
+    <header class="page__header">
+        {% include "includes/header.njk" %}
+    </header>
+
+    <main class="page__main">
+        {% block mainContent %}{% endblock %}
+    </main>
+
+{% endblock %}

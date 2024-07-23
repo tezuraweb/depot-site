@@ -1,0 +1,151 @@
+.report {
+    max-width: 800px;
+    margin: 0 auto;
+    color: $black;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+    }
+
+    &__h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    &__h2 {
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+
+    &__h3 {
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    &__h4 {
+        font-size: 18px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    &__title {
+        margin-right: 20px;
+    }
+
+    &__date {
+        text-align: right;
+        font-size: 14px;
+        margin-left: auto;
+    }
+
+    &__print {
+        margin-left: 15px;
+    }
+
+    &__summary,
+    &__ratio {
+        margin-bottom: 20px;
+    }
+
+    &__icon {
+        margin-right: 10px;
+    }
+
+    &__metrics {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+
+        &--sb {
+            justify-content: space-between;
+        }
+    }
+
+    &__metric {
+        font-weight: 700;
+        font-size: 14px;
+        padding: 5px 10px;
+
+        &--green {
+            color: $green;
+        }
+
+        &--red {
+            color: $red;
+        }
+
+        &--large {
+            font-size: 18px;
+        }
+
+        &--thin {
+            font-weight: 500;
+        }
+
+        &--right {
+            text-align: right;
+        }
+
+        p:first-child {
+            margin-bottom: 5px;
+        }
+    }
+
+    &__block {
+        max-width: 500px;
+        margin-bottom: 15px;
+    }
+
+    &__bar {
+        display: flex;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    &__percentage {
+        max-width: 90%;
+        min-width: 20%;
+        padding: 10px 20px;
+        text-align: center;
+
+        &--yellow {
+            background-color: $yellow;
+        }
+
+        &--grey {
+            background-color: $lightGrey;
+        }
+
+        &--green {
+            background-color: $green;
+        }
+
+        &--red {
+            background-color: $red;
+            color: $white;
+        }
+    }
+
+    @media (max-width: ($laptop-breakpoint - 1)) {
+        &__title {
+            margin-bottom: 10px;
+        }
+
+        &__date {
+            margin-left: 0;
+        }
+    }
+
+    @media print {
+        &__print {
+            display: none;
+        }
+    }   
+}

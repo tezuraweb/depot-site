@@ -1,0 +1,36 @@
+.socials {
+    display: flex;
+
+    &__item {
+        margin-right: 20px;
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+
+    &__link {
+        display: block;
+        width: 25px;
+        height: 25px;
+
+        &--container {
+            display: flex;
+            width: auto;
+            height: auto;
+            align-items: center;
+        }
+
+        &--icon {
+            display: block;
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+        }
+
+        .icon {
+            width: 100%;
+            height: auto;
+        }
+    }
+}

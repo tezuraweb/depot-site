@@ -1,0 +1,38 @@
+<div class="menu">
+    {% if user.status == 'admin' %}
+        <ul class="menu__list">
+            <li class="menu__item">
+                <a href="/backoffice/editor" class="menu__link{% if page == 'editor' %} active{% endif %}">Редактор сайта</a>
+            </li>
+            {# <li class="menu__item">
+                <a href="/backoffice/feedback" class="menu__link{% if page == 'feedback' %} active{% endif %}">Обращения</a>
+            </li> #}
+            <li class="menu__item">
+                <a href="/backoffice/report" class="menu__link{% if page == 'report' %} active{% endif %}">Отчет</a>
+            </li>
+            <li class="menu__item">
+                <a href="/backoffice/promotions" class="menu__link{% if page == 'promotions' %} active{% endif %}">Акции</a>
+            </li>
+        </ul>
+    {% else %}
+        <ul class="menu__list">
+            <li class="menu__item">
+                <a href="/backoffice/profile" class="menu__link{% if page == 'profile' %} active{% endif %}">Профиль</a>
+            </li>
+            <li class="menu__item">
+                <a href="/backoffice/documents" class="menu__link{% if page == 'docs' %} active{% endif %}">Документы</a>
+            </li>
+            <li class="menu__item">
+                <a href="/backoffice/requests" class="menu__link{% if page == 'requests' %} active{% endif %}">Обращения</a>
+            </li>
+        </ul>
+        <a class="menu__bot" href="/bot" target="_blank" rel="nofollow noopener">
+            <div class="menu__bot--icon">
+                {% set includeIcon = 'telegramIcon' %}
+                {% set iconWidth = 50 %}
+                {% include "includes/svg.njk" %}
+            </div>
+            <div class="menu__bot--text">Телеграм-бот</div>
+        </a>
+    {% endif %}
+</div>

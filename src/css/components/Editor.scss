@@ -1,0 +1,78 @@
+.editor {
+    max-width: 600px;
+
+    &__block {
+        margin-bottom: 70px;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    &__list {
+        margin-bottom: 50px;
+    }
+
+    &__line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    &__buttons {
+        display: flex;
+    }
+
+    &__button {
+        margin-left: 15px;
+    }
+
+    &__message {
+        padding: 20px 0;
+
+        &--green {
+            color: $green;
+        }
+
+        &--red {
+            color: $red;
+        }
+    }
+
+    &__popup {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: $white;
+        padding: 50px 60px;
+
+        &--header {
+            margin-bottom: 50px;
+        }
+
+        &--content {
+            max-width: 600px;
+        }
+
+        &--buttons {
+            display: flex;
+            flex-direction: column;
+            max-width: 150px;
+
+            .button {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        &__popup {
+            padding: 35px 20px;
+        }
+    }
+}

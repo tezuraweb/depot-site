@@ -1,0 +1,43 @@
+.map {
+    &__building {
+        fill: $grey;
+        transition: fill .3s;
+    
+        &.active {
+            fill: $yellow;
+            cursor: pointer;
+
+            &:hover {
+                fill: $red;
+            }
+        }
+        
+        &.selected {
+            fill: $red;
+        }
+    }
+
+    &__room {
+        stroke: $darkGrey;
+        stroke-width: 1px;
+        transition: fill .3s, stroke .3s, stroke-width .3s;
+
+        &.clickable, &.active {
+            cursor: pointer; 
+        }
+
+        &.active {
+            fill: $yellow;
+        }
+
+        &.selected {
+            stroke-width: 5px;
+            stroke: $red;
+        }
+
+        &.hovered {
+            stroke-width: 5px;
+            stroke: $red;
+        }
+    }
+}

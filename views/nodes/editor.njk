@@ -1,0 +1,26 @@
+{% set pageTitle = 'Документы - Депо' %}
+{% set pageDescription = 'Торгово-складской комплекс Депо: Документы' %}
+
+{% extends "layouts/backoffice.njk" %}
+
+{% block mainContent %}
+
+    <section class="section section--nopadding" id="docs">
+        <div class="container container--nopadding">
+            <div class="page__backoffice">
+                <div class="page__backoffice--column page__backoffice--first">
+                    <div class="page__backoffice--sticky">
+                        {% include "includes/backoffice-menu.njk" %}
+                    </div>
+                </div>
+
+                <div class="page__backoffice--column page__backoffice--second">
+                    <div class="page__backoffice--content">
+                        <div data-react-component="siteEditor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

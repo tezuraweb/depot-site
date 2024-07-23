@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="footer">
+        <h2 class="footer__title">Контакты</h2>
+
+        <div class="footer__content">
+            <div class="footer__column footer__column--first">
+                <div class="footer__company">
+                    <div class="footer__company--icon">
+                        {% set includeIcon = 'authIcon' %}
+                        {% include "includes/svg.njk" %}
+                    </div>
+                    <div class="footer__company--info">
+                        <div class="footer__company--name">АО "ДЕПО"</div>
+                        <div class="footer__company--workhours">ПН-ПТ: 09:00 - 18:00</div>
+                    </div>
+                </div>
+
+                {% if contacts %}
+                    <div class="footer__contacts">
+                        <div class="footer__group">
+                            <div class="footer__label">Телефон</div>
+                            <a class="footer__link" href="{{ contacts.phone.link }}">{{ contacts.phone.title }}</a>
+                        </div>
+
+                        <div class="footer__group">
+                            <div class="footer__label">Мессенджеры</div>
+                            <ul class="footer__socials socials">
+                                {% for item in contacts.socials %}
+                                    <li class="socials__item">
+                                        <a class="socials__link" href="{{ item.link }}" target="_blank" rel="nofollow noopener" aria-label="{{ item.title }}">
+                                            {% set includeIcon = item.icon %}
+                                            {% include "includes/svg.njk" %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="footer__group">
+                            <div class="footer__label">Социальные сети</div>
+                            <ul class="footer__socials socials">
+                                {% for item in contacts.channels %}
+                                    <li class="socials__item">
+                                        <a class="socials__link" href="{{ item.link }}" target="_blank" rel="nofollow noopener" aria-label="{{ item.title }}">
+                                            {% set includeIcon = item.icon %}
+                                            {% include "includes/svg.njk" %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="footer__group">
+                            <div class="footer__label">Почта</div>
+                            <a class="footer__link" href="{{ contacts.email.link }}">{{ contacts.email.title }}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="footer__column footer__column--second">
+                <div class="footer__location">
+                    <div class="footer__location--title">Расположение</div>
+                    <div class="footer__location--address">Ижевск, Буммашевская, 5</div>
+                </div>
+                <div class="footer__map">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+             <div class="footer__privacy">
+                <a href="">Политика конфиденциальности</a>
+            </div>
+            <div class="footer__copyright">
+                © 2024 АО «ДЕПО». Все права защищены
+            </div>
+        </div>
+    </div>
+</div>

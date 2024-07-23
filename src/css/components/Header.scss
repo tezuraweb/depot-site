@@ -1,0 +1,267 @@
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+
+    &__logo {
+        display: block;
+        margin-right: 60px;
+    }
+
+    &__logoMobile {
+        display: none;
+    }
+
+    &__contacts {
+        margin-right: 60px;
+        padding-top: 30px;
+    }
+
+    &__phone {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    &__socials {
+        justify-content: flex-end;
+    }
+
+    &__auth {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+
+        &--icon {
+            min-width: 41px;
+            margin-right: 10px;
+        }
+    }
+
+    &__burger {
+        &--checkbox {
+            display: none;
+        }
+
+        &--icon {
+            display: block;
+            min-width: 41px;
+            width: 41px;
+            height: 41px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 3px solid $yellow;
+            margin-left: 65px;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                height: 3px;
+                width: 20px;
+                border-radius: 2px;
+                background-color: $yellow;
+                opacity: 0;
+                transition: opacity .3s;
+            }
+
+            &::before {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            &::after {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+
+            .icon {
+                transition: opacity .3s;
+            }
+        }
+    }
+
+    &__navMobile {
+        position: absolute;
+        top: 100%;
+        right: -50px;
+    }
+
+    &__navMobile,
+    &__burger--icon {
+        display: none;
+    }
+
+    // modifiers
+
+    &--backoffice {
+        padding: 30px 0;
+
+        .header__contacts {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            margin-left: auto;
+            margin-right: 200px;
+        }
+
+        .header__phone {
+            margin-bottom: 0;
+            margin-right: 40px;
+        }
+    }
+
+    // media
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        &__logo {
+            max-width: 120px;
+            margin-right: 40px;
+        }
+
+        &__nav,
+        &__contacts {
+            margin-right: 20px;
+        }
+
+        &__auth {
+            &--text {
+                max-width: 125px;
+            }
+        }
+    }
+
+    @media (max-width: ($laptop-breakpoint - 1)) {
+
+        &__navMobile,
+        &__burger--icon {
+            display: block;
+        }
+
+        &__contacts {
+            &--desktop {
+                display: none;
+            }
+        }
+
+        &__navMobile {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        &__burger {
+            &--checkbox:checked~.header__burger--icon {
+
+                &::before,
+                &::after {
+                    opacity: 1;
+                }
+
+                .icon {
+                    opacity: 0;
+                }
+            }
+
+            &--checkbox:checked~.header__navMobile {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        // modifiers
+
+        &--backoffice {
+            .header__contacts {
+                margin-right: auto;
+            }
+        }
+    }
+
+    @media (max-width: ($tablet-breakpoint - 1)) {
+        padding: 20px 0;
+        justify-content: space-between;
+
+        &__contacts {
+            padding: 15px 70px;
+            margin: 0;
+        }
+
+        &__socials {
+            justify-content: flex-start;
+        }
+
+        &__auth {
+            padding: 15px 70px;
+
+            &--text {
+                font-size: 18px;
+                max-width: none;
+            }
+
+            &--desktop {
+                display: none;
+            }
+
+            &--backoffice {
+                padding: 15px 0;
+            }
+        }
+
+        // modifiers
+
+        &--backoffice {
+            .header__contacts {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        &__logo {
+            display: none;
+        }
+
+        &__logoMobile {
+            display: block;
+        }
+
+        &__contacts {
+            padding: 15px 30px;
+        }
+
+        &__auth {
+            padding: 15px 30px;
+
+            &--backoffice {
+                padding: 15px 0;
+            }
+        }
+
+        &__burger {
+            &--icon {
+                min-width: 30px;
+                width: 30px;
+                height: 30px;
+                border: 2px solid $yellow;
+                margin-left: 0;
+                padding: 0;
+
+                &::before,
+                &::after {
+                    height: 2px;
+                    width: 10px;
+                }
+
+                .icon {
+                    width: 17px;
+                    height: 12px;
+                }
+            }
+        }
+
+        &__navMobile {
+            width: 100vw;
+            right: -20px;
+        }
+    }
+}

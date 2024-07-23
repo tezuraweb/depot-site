@@ -1,0 +1,102 @@
+.menu {
+    height: 100vh;
+    background: $grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &__link {
+        display: block;
+        font-size: 24px;
+        padding: 35px 75px;
+        border: 2px solid transparent;
+
+        &.active {
+            background-color: $white;
+            border-right-color: $yellow;
+            border-bottom-color: $yellow;
+            border-top-color: $yellow;
+            font-weight: 700;
+        }
+    }
+
+    &__bot {
+        position: sticky;
+        bottom: 50px;
+        margin-top: auto;
+
+        &--text {
+            font-size: 24px;
+            font-weight: 700;
+            color: $tgBlue;
+            margin-top: 10px;
+        }
+    }
+
+    // media
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        &__link {
+            padding: 35px 60px;
+        }
+    }
+
+    @media (max-width: ($tablet-breakpoint - 1)) {
+        height: auto;
+        flex-direction: row;
+        padding: 0 30px;
+
+        &__list {
+            display: flex;
+        }
+
+        &__link {
+            padding: 15px 20px;
+            font-size: 14px;
+            border: none;
+        }
+
+        &__bot {
+            position: relative;
+            bottom: 0;
+            margin-top: 0;
+
+            &--icon {
+                width: 34px;
+                height: 34px;
+            }
+
+            &--text {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        padding: 0;
+        
+        &__link {
+            padding: 15px 12px;
+        }
+
+        &__bot {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+            background: $white;
+            z-index: 10;
+
+            &--text {
+                display: block;
+                margin-top: 0;
+                margin-left: 15px;
+            }
+        }
+    }
+}

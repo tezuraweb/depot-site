@@ -1,0 +1,228 @@
+.card {
+    flex-basis: 33.333%;
+    padding: 15px;
+    max-width: 500px;
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border: 5px solid $black;
+    }
+
+    &__carousel {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 50%;
+    }
+
+    &__pic {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &--img,
+        &--placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        &--placeholder {
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #666;
+        }
+    }
+
+    &__promotion {
+        position: absolute;
+        top: 0;
+        left: 20px;
+        background: $red;
+        padding: 10px 20px;
+        font-weight: 700;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        color: $white;
+    }
+
+    &__nav {
+        position: absolute;
+        bottom: 15px;
+        background: $black;
+        border: none;
+        padding: 3px 9px;
+        cursor: pointer;
+        z-index: 1;
+        border-radius: 50%;
+        color: $white;
+        font-family: inherit;
+        font-size: 20px;
+        font-weight: 700;
+
+        &--prev {
+            left: 20px;
+        }
+
+        &--next {
+            right: 20px;
+        }
+    }
+
+    &__info {
+        padding: 20px 20px 30px;
+        background-color: $white;
+        color: $black;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__location {
+        margin-bottom: 15px;
+    }
+
+    &__type {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    &__columns {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: auto;
+    }
+
+    &__subtitle {
+        margin-bottom: 15px;
+    }
+
+    &__detail {
+        display: flex;
+        align-items: center;
+    }
+
+    &__details {
+        margin-right: 15px;
+
+        &>.card__detail {
+            margin-bottom: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &--flex {
+            display: flex;
+            align-items: center;
+
+            &>.card__detail {
+                margin-bottom: 0;
+                margin-right: 40px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    &__icon {
+        display: block;
+        margin-right: 10px;
+    }
+
+    &__value {
+        font-size: 14px;
+
+        &--green {
+            color: $green;
+            font-weight: 700;
+        }
+
+        &--red {
+            color: $red;
+            font-weight: 700;
+        }
+    }
+
+    &__link {
+        text-align: center;
+    }
+
+    &__rented {
+        margin-top: 25px;
+    }
+
+    // modifiers
+
+    &--main {
+        .card__info {
+            background-color: $grey;
+        }
+    }
+
+    &--search,
+    &--recommend {
+        .card__wrapper {
+            border-color: $grey;
+        }
+    }
+
+    &--promotions {
+        .card__wrapper {
+            border-color: $white;
+        }
+
+        .card__info {
+            background-color: $lightGrey;
+        }
+    }
+
+    &--rented {
+        .card__wrapper {
+            border: 2px solid $darkGrey;
+        }
+    }
+
+    &.active .card__wrapper {
+        border-color: $yellow;
+    }
+
+    // media
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        flex-basis: 50%;
+    }
+
+    @media (max-width: ($laptop-breakpoint - 1)) {
+        flex-basis: 100%;
+
+        // modifiers
+
+        &--main {
+            &.active .card__wrapper {
+                border: none;
+            }
+        }
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        padding: 20px 0;
+
+        &__wrapper {
+            border: none;
+        }
+    }
+}

@@ -1,0 +1,119 @@
+.presentation {
+
+    &__container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    &__block {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        justify-content: flex-end;
+        transition: background-image 0.3s ease-in-out;
+    }
+
+    &__info {
+        width: 100%;
+        height: 190px;
+        padding: 0 75px;
+        margin-top: auto;
+        margin-bottom: 130px;
+        background: rgba(28, 29, 32, 0.8);
+    }
+
+    &__text {
+        font-size: 24px;
+        line-height: 110%;
+        text-transform: uppercase;
+        max-width: 1180px;
+    }
+
+    &__controls {
+        padding: 20px;
+        padding-right: 0;
+
+        &>button {
+            padding: 10px;
+            transition: transform 0.3s ease;
+            animation: pulse 1.5s infinite;
+
+            @keyframes pulse {
+
+                0%,
+                100% {
+                    transform: translateX(0);
+                }
+
+                50% {
+                    transform: translateX(10px);
+                }
+            }
+
+        }
+
+        &>button.reversed {
+            transform: rotate(180deg);
+            animation: none;
+        }
+
+        &>button:hover {
+            animation: none;
+        }
+
+        &>button {
+            .icon {
+                max-width: unset;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        &__info {
+            height: 157px;
+            padding: 0 50px;
+        }
+
+        &__text {
+            font-size: 20px;
+            max-width: 853px;
+        }
+    }
+
+    @media (max-width: ($laptop-breakpoint - 1)) {
+        &__text {
+            font-size: 18px;
+        }
+
+        &__info {
+            margin-bottom: 80px;
+        }
+    }
+
+    @media (max-width: 800px) {
+        &__text {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        &__info {
+            position: relative;
+            padding: 0 20px;
+            margin-bottom: 60px;
+        }
+
+        &__controls {
+            position: absolute;
+            right: 20px;
+            bottom: -35px;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}

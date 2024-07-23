@@ -1,0 +1,67 @@
+{% set pageTitle = 'Аренда помещений - Депо' %}
+{% set pageDescription = 'Торгово-складской комплекс Депо: аренда помещений в Ижевске' %}
+
+{% extends "layouts/default.njk" %}
+
+{% block mainContent %}
+
+    <section class="section main-links">
+        <div class="container">
+            <ul class="main-links__list">
+                <li class="main-links__item">
+                    <a class="main-links__link main-links__link--first" href="/">
+                        <span class="main-links__link--icon">
+                            {% set includeIcon = 'geoTag' %}
+                            {% include "includes/svg.njk" %}
+                        </span>
+                        <span class="main-links__link--text"> Ижевск, Буммашевская, 5</span>
+                    </a>
+                </li>
+                {% for item in navs.slice(2, 5) %}
+                    <li class="main-links__item">
+                        <a class="main-links__link" href="{{ item.link }}">{{ item.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <div data-react-component="mainFilter"></div>
+
+    <section class="section section__shadow" id="contact-block">
+        <div class="container">
+            <h2>Остались вопросы?</h2>
+            <div class="contact__summary">Позвоните нам на горячую линию!</div>
+
+            <div class="contact__phone">
+                <div class="contact__phone--icon">
+                    {% set includeIcon = 'phoneNoBackground' %}
+                    {% include "includes/svg.njk" %}
+                </div>
+                <a href="{{ contacts.phone.link }}" class="contact__phone--number">{{ contacts.phone.title }}</a>
+            </div>
+            <div class="contact__form">
+                <div class="contact__form--text">или</div>
+                <div data-react-component="contactFormModal"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="partner-locations">
+        <div class="container">
+            <div data-react-component="partnerCardList"></div>
+            <div data-react-component="partnerLinks"></div>
+        </div>
+    </section>
+
+    <section class="section section__shadow-2" id="contact-form">
+        <div class="container">
+            <h2>Поможем подобрать помещение</h2>
+
+            <div class="contact__content">
+                <div data-react-component="contactForm"></div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

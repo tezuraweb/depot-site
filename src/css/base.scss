@@ -1,0 +1,648 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -webkit-text-size-adjust: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background-color: $white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Montserrat", sans-serif;
+    background-color: $grey;
+    color: $white;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1;
+    min-width: $containerMinWidth;
+    overflow-x: hidden;
+    overflow-anchor: none;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+
+    &.no-scroll {
+        overflow: hidden;
+        height: 100%;
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        font-size: 14px;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 700;
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        font-size: 46px;
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        font-size: 24px;
+    }
+}
+
+h2 {
+    font-size: 44px;
+    font-weight: 700;
+
+    @media (max-width: ($laptop-breakpoint - 1)) {
+        font-size: 36px;
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        font-size: 24px;
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.container {
+    max-width: $containerMaxWidth;
+    margin: 0 auto;
+    padding: 0 75px;
+    position: relative;
+
+    &--fixed {
+        max-width: $desktop-breakpoint;
+        margin: 0 auto;
+    }
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        padding: 0 50px;
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        padding: 0 20px;
+    }
+
+    &--nopadding {
+        padding: 0;
+    }
+}
+
+.section {
+    position: relative;
+    padding: 80px 0;
+
+    &#main-listing,
+    &#partner-locations,
+    &#error {
+        background-color: $black;
+    }
+
+    &#search-block,
+    &#premises-data,
+    &#premises-maps,
+    &#login,
+    &#profile,
+    &#docs,
+    &#requests,
+    &#report {
+        background-color: $white;
+    }
+
+    &#search-listing,
+    &#premises-data {
+        padding-bottom: 0;
+    }
+
+    &#hero {
+        background-image: url('../../assets/img/pictures/main_cover.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        padding-top: 50px;
+    }
+
+    &#contact-block {
+        background-image: url('../../assets/img/pictures/contacts_bg.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &#contact-form {
+        background-image: url('../../assets/img/pictures/warehouse.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &#about-block {
+        background-image: url('../../assets/img/pictures/about_bg.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &#about-logistics {
+        position: relative;
+        background-image: url('../../assets/img/pictures/logistics_bg.webp');
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: 100%;
+    }
+
+    &#lightindustrial-block {
+        background-image: url('../../assets/img/pictures/li_bg.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+    }
+
+    &#lightindustrial-form {
+        background-image: url('../../assets/img/pictures/li_form_bg.webp');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    &__shadow::before,
+    &__shadow-2::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: $black;
+        opacity: 42%;
+    }
+
+    &__shadow::before {
+        opacity: 42%;
+    }
+
+    &__shadow-2::before {
+        opacity: 65%;
+    }
+
+    @media (min-width: $containerMaxWidth) {
+
+        &#search-listing,
+        &#premises-data {
+            &::before {
+                content: '';
+                position: absolute;
+                display: block;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 84px;
+                background-color: $yellow;
+            }
+        }
+    }
+
+    @media (max-width: ($desktop-breakpoint + 20)) {
+        &#about-logistics {
+            &::before {
+                content: '';
+                position: absolute;
+                width: 425px;
+                height: 524px;
+                bottom: 0;
+                right: 202px;
+                background-image: url('../../assets/img/pictures/deliveryperson.webp');
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        &#hero {
+            padding-top: 80px;
+        }
+
+        &#about-logistics {
+            &::before {
+                bottom: -110px;
+                right: 17%;
+                background-size: 80%;
+            }
+        }
+    }
+
+    @media (max-width: 1179px) {
+        &#about-logistics {
+            &::before {
+                right: 14%;
+            }
+        }
+    }
+
+    @media (max-width: ($laptop-breakpoint - 1)) {
+        padding: 70px 0;
+
+        &#hero {
+            padding-top: 70px;
+        }
+
+        &#about-logistics {
+            background-position-x: 45%;
+            background-size: auto;
+            background-position-y: 125%;
+
+            &::before {
+                width: 0;
+                height: 0;
+                background-image: none;
+            }
+        }
+
+        &#main-listing {
+            padding-bottom: 0;
+        }
+
+        &#search-listing,
+        &#premises-data {
+            &::before {
+                height: 73px;
+            }
+        }
+    }
+
+    @media (max-width: ($tablet-breakpoint - 1)) {
+        &#hero {
+            border-bottom: 2px solid $yellow;
+        }
+    }
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        padding: 50px 0;
+
+        &#hero {
+            padding-top: 50px;
+        }
+
+        &#search-block {
+            padding-bottom: 0;
+        }
+
+        &#about-logistics {
+            background-size: 202%;
+            background-position-x: 47%;
+            background-position-y: auto;
+        }
+    }
+
+    &--nopadding {
+        padding: 0;
+    }
+}
+
+.flex {
+    display: flex;
+
+    &--sb {
+        justify-content: space-between;
+    }
+
+    &--se {
+        justify-content: space-evenly;
+    }
+
+    &--center {
+        align-items: center;
+    }
+
+    &--col {
+        flex-direction: column;
+    }
+}
+
+.icon {
+    max-width: 100%;
+    height: auto;
+}
+
+.iconNext,
+.iconPrev,
+.icon-NextIco,
+.icon-PrevIcon {
+    width: 40px;
+    height: 40px;
+}
+
+.button {
+    background-color: $yellow;
+    color: $black;
+    display: block;
+    padding: 15px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 500;
+
+    // media
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        padding: 12px 20px;
+    }
+
+    // modifiers
+
+    &--grey {
+        background-color: $grey;
+    }
+
+    &--large {
+        padding: 25px 30px;
+        font-size: 20px;
+    }
+
+    &--close {
+        position: relative;
+        padding: 20px;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 9px;
+            left: 20px;
+            width: 1px;
+            height: 23px;
+            background-color: $black;
+        }
+
+        &::before {
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &--droplist {
+        position: relative;
+        padding: 20px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 11px;
+            width: 16px;
+            height: 16px;
+            border-bottom: 2px solid $black;
+            border-right: 2px solid $black;
+            transform: rotate(45deg);
+        }
+    }
+
+    &--icon {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        padding: 0;
+        background-color: $yellow;
+        text-align: center;
+
+        .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 65%;
+        }
+    }
+
+    &--iconBlack {
+        width: 30px;
+        height: 30px;
+        background-color: $black;
+        border-radius: 50%;
+
+        .icon {
+            fill: $yellow;
+            width: 17px;
+        }
+    }
+
+    &--smallIcon {
+        width: 30px;
+        height: 30px;
+    }
+
+    &--black {
+        background-color: $black;
+        color: $white;
+    }
+
+    // modifiers media
+
+    @media (max-width: ($mobile-breakpoint - 1)) {
+        &--large {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        &--icon {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
+
+[class*="ground-pane"] {
+    filter: grayscale(1);
+}
+
+.animate {
+    &--pulse {
+        &:hover {
+            animation: pulseGlobal 2s infinite;
+        }
+    }
+
+    &--prev {
+        &:hover {
+            animation: pulsePrevGlobal 1.5s infinite;
+        }
+    }
+
+    &--next {
+        &:hover {
+            animation: pulseNextGlobal 1.5s infinite;
+        }
+    }
+
+    @keyframes pulseGlobal {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        75% {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes pulsePrevGlobal {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(-10px);
+        }
+    }
+
+    @keyframes pulseNextGlobal {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(10px);
+        }
+    }
+
+    @keyframes pulsePrevGlobalVertical {
+
+        0%,
+        100% {
+            transform: rotate(90deg) translateX(0);
+        }
+
+        50% {
+            transform: rotate(90deg) translateX(-10px);
+        }
+    }
+
+    @keyframes pulseNextGlobalVertical {
+
+        0%,
+        100% {
+            transform: rotate(90deg) translateX(0);
+        }
+
+        50% {
+            transform: rotate(90deg) translateX(10px);
+        }
+    }
+
+    @media (max-width: ($desktop-breakpoint - 1)) {
+        &--prev {
+            &:hover {
+                animation: pulsePrevGlobalVertical 1.5s infinite;
+            }
+        }
+
+        &--next {
+            &:hover {
+                animation: pulseNextGlobalVertical 1.5s infinite;
+            }
+        }
+    }
+
+    @media (max-width: ($tablet-breakpoint - 1)) {
+        &--prev {
+            &:hover {
+                animation: pulsePrevGlobal 1.5s infinite;
+            }
+        }
+
+        &--next {
+            &:hover {
+                animation: pulseNextGlobal 1.5s infinite;
+            }
+        }
+    }
+
+    &--prev {
+        &:disabled {
+            animation: none;
+        }
+    }
+
+    &--next {
+        &:disabled {
+            animation: none;
+        }
+    }
+}
+
+@media print {
+    body {
+        background-color: $white;
+    }
+
+    .section#premises-listing {
+        display: none;
+    }
+}
