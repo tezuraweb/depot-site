@@ -127,13 +127,25 @@ async function getTicketByStatusTg(status, offset, limit) {
     const sanitizedOffcet = sqlstring.escape(offset);
     const sanitizedLimit = sqlstring.escape(limit);
     const query = `
-        SELECT * 
+        SELECT
+            t.id AS id,
+            t.inquirer AS inquirer,
+            t.inquirer_username AS inquirer_username,
+            t.manager AS manager,
+            t.ticket_number AS ticket_number,
+            t.text AS text,
+            t.status AS status,
+            t.files AS files,
+            t.photos AS photos,
+            t.date AS date,
+            u.name AS username
         FROM (
             SELECT *, 
                 row_number() OVER (PARTITION BY ticket_number ORDER BY date) AS rn
             FROM ticket 
             WHERE status = ${sanitizedStatus}
-        ) 
+        ) AS t
+        JOIN tenants AS u ON t.inquirer_username = u.tg_user
         WHERE rn = 1
         ORDER BY ticket_number
         LIMIT ${sanitizedLimit} OFFSET ${sanitizedOffcet}

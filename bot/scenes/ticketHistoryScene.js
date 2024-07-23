@@ -109,7 +109,7 @@ const createTicketHistoryScene = () => {
             let text = `Статус: ${statusValues[ticket.status]}\n\n`;
 
             for (const msg of ctx.session.ticketData) {
-                text += `Дата обновления: ${msg.date}\n${msg.manager ? 'Ответ менеджера' : 'Вопрос пользователя'}:\n\n${msg.text}\n`
+                text += `Дата обновления: ${msg.date}\n${msg.manager ? '📩 Ответ менеджера' : `Вопрос ${ticket.inquirer_username}`}:\n\n${msg.text}\n--------------\n\n`
             }
             ctx.reply(text,
                 Markup.inlineKeyboard([
@@ -148,7 +148,7 @@ const createTicketHistoryScene = () => {
         } catch (e) {
             ctx.reply("Ошибка!",
                 Markup.keyboard(['Назад']).oneTime().resize());
-            console.log(e.message);
+            console.error(e.message);
         }
     }
 
@@ -165,7 +165,7 @@ const createTicketHistoryScene = () => {
                 const offset = ctx.session.ticketOffset;
                 ctx.session.ticketList = ctx.session.ticketList.concat(tickets);
 
-                const ticketList = tickets.map((ticket, index) => `${index + 1 + offset}. ${ticket.date}\n${ticket.text.slice(0, 30)}...`).join('\n\n');
+                const ticketList = tickets.map((ticket, index) => `${index + 1 + offset}. ${ticket.username ? `От ${ticket.username} (@${ticket.inquirer_username})\n` : ''}${ticket.date}\n${ticket.text.slice(0, 30)}...`).join('\n\n');
 
                 const keyboardButtons = tickets.map((ticket, index) =>
                     Markup.button.callback(`${index + 1 + offset}`, `ticket_${index + 1 + offset}`)
@@ -199,7 +199,7 @@ const createTicketHistoryScene = () => {
         } catch (e) {
             ctx.reply("Ошибка!",
                 Markup.keyboard(['Выйти']).oneTime().resize());
-            console.log(e.message);
+            console.error(e.message);
         }
     };
 

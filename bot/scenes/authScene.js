@@ -31,7 +31,7 @@ const createAuthScene = () => {
             }
         } catch (e) {
             ctx.reply("Ошибка!");
-            console.log(e.message);
+            console.error(e.message);
         }
     });
 

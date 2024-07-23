@@ -1,7 +1,9 @@
 const { Scenes, Markup } = require('telegraf');
-const puppeteer = require('puppeteer');
+const wkhtmltopdf = require('wkhtmltopdf');
 const path = require('path');
 const fs = require('fs');
+// const htmlPdfNode = require('html-pdf-node');
+const nunjucks = require('nunjucks');
 
 const createReportScene = () => {
     const createReportScene = new Scenes.BaseScene('CREATE_REPORT_SCENE');
@@ -39,21 +41,44 @@ const createReportScene = () => {
                 fs.mkdirSync(reportsDir);
             }
 
-            const browser = await puppeteer.launch();
-            const page = await browser.newPage();
-            await page.goto(`http://localhost:3000/api/report/print/${base}`, { waitUntil: 'networkidle2' });
+            let baseName = '';
+            if (base == 'depot') {
+                baseName = 'АО ДЕПО';
+            } else if (base == 'gagarinsky') {
+                baseName = 'ПКЦ ООО ГАГАРИНСКИЙ';
+            } else if (base == 'yujnaya') {
+                baseName = 'ООО База Южная и ООО Строительная База Южная';
+            }
 
-            const pdfPath = path.join(reportsDir, `report-${ctx.from.id}.pdf`);
-
-            await page.pdf({ path: pdfPath, format: 'A4' });
-            await browser.close();
-            await ctx.replyWithDocument({ source: pdfPath });
-
-            fs.unlinkSync(pdfPath);
-            return ctx.scene.enter('ADMIN_MENU_SCENE');
+            const dateLine = new Date().toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    
+            const pdfPath = path.join(reportsDir, `Отчет ${baseName} на ${dateLine}.pdf`);
+    
+            const options = {
+                noOutline: true,
+                marginTop: 0,
+                headerCenter: 'My Report'
+            };
+    
+            wkhtmltopdf(`http://localhost:3000/api/report/print/${base}`, options)
+                .pipe(fs.createWriteStream(pdfPath))
+                .on('finish', async () => {
+                    try {
+                        await ctx.replyWithDocument({ source: pdfPath });
+                        fs.unlinkSync(pdfPath);
+                    } catch (err) {
+                        console.error(`Failed to send PDF: ${err}`);
+                    }
+                    return ctx.scene.enter('ADMIN_MENU_SCENE');
+                })
+                .on('error', (err) => {
+                    console.error(`Error generating PDF: ${err}`);
+                    ctx.reply("Произошла ошибка генерации отчета, попробуйте позже.");
+                    return ctx.scene.enter('ADMIN_MENU_SCENE');
+                });
         } catch (error) {
-            console.error(error);
-            ctx.reply("Произогла ошибка генерации отчета, попробуйте позже.");
+            console.error(`Error in generateAndSendReport: ${error}`);
+            ctx.reply("Произошла ошибка генерации отчета, попробуйте позже.");
             return ctx.scene.enter('ADMIN_MENU_SCENE');
         }
     };

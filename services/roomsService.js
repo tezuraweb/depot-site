@@ -185,7 +185,7 @@ async function getReport(base) {
             COUNT(*) as total,
             SUM(CASE WHEN status = 'В аренде' THEN 1 ELSE 0 END) as rented,
             ROUND(100.0 * SUM(CASE WHEN status = 'В аренде' THEN 1 ELSE 0 END) / COUNT(*), 2) as rented_percentage,
-            ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM rooms), 2) as type_percentage
+            ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM rooms WHERE organization IN (${sanitizedBase})), 2) as type_percentage
         FROM 
             rooms
         WHERE

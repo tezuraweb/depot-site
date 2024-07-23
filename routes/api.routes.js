@@ -192,12 +192,6 @@ router
     .get(dbController.getRoomsRecommended);
 
 router
-    .route('/report/print/:id')
-    .get((req, res) => {
-        res.render('nodes/report-print');
-    });
-
-router
     .route('/rented')
     .get(auth, dbController.getRoomsByTenant);
 
@@ -224,6 +218,64 @@ router
 router
     .route('/docs')
     .get(auth, dbController.getDocsByUser);
+
+router
+    .route('/report/print/:base')
+    .get(dbController.getRoomsReportMiddleware, async (req, res) => {
+        try {
+            const rooms = req.rooms;
+
+            if (rooms?.length > 0) {
+                const list = rooms.map(item => {
+                    const total = parseInt(item.total);
+                    const rented = parseInt(item.rented);
+                    let type_percentage = parseFloat(item.type_percentage);
+                    let rented_percentage = parseFloat(item.rented_percentage);
+
+                    if (isNaN(total) || isNaN(rented) || isNaN(type_percentage) || isNaN(rented_percentage)) {
+                        throw 'Invalid data';
+                    }
+
+                    type_percentage = Math.round(type_percentage);
+                    rented_percentage = Math.round(rented_percentage);
+
+                    return {
+                        type: item.type,
+                        total: total,
+                        rented: rented,
+                        available: total - rented,
+                        type_percentage: type_percentage,
+                        rented_percentage: rented_percentage,
+                        available_percentage: 100 - rented_percentage,
+                    };
+                });
+
+                const aggregatedData = list.reduce((acc, curr) => {
+                    acc.total += curr.total;
+                    acc.rented += curr.rented;
+                    return acc;
+                }, {
+                    total: 0,
+                    rented: 0,
+                });
+
+                aggregatedData.available = aggregatedData.total - aggregatedData.rented;
+                aggregatedData.rented_percentage = Math.round(aggregatedData.rented / aggregatedData.total * 100);
+                aggregatedData.available_percentage = 100 - aggregatedData.rented_percentage;
+
+                const reportData = {
+                    aggregatedData,
+                    types: list,
+                    generatedAt: new Date().toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+                };
+
+                res.render('nodes/report-print', reportData);
+            }
+        } catch (error) {
+            console.error('Error fetching report data:', error);
+            res.status(500).send('Error generating report');
+        }
+    });
 
 router
     .route('/login')

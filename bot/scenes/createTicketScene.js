@@ -51,7 +51,6 @@ const createTicketScene = () => {
             }
 
             if (ctx.session.newTicketNumber && ctx.session.newTicketInquirer) {
-                console.log(ctx.session.newTicketInquirer)
                 await ctx.telegram.sendMessage(ctx.session.newTicketInquirer, `Ответ на ваше обращение:\n\n${ctx.session.ticket.text}`);
 
                 for (const photoUrl of ctx.session.ticket.photos) {
@@ -76,7 +75,7 @@ const createTicketScene = () => {
             }
         } catch (e) {
             ctx.reply("Ошибка!");
-            console.log(e.message);
+            console.error(e.message);
             return ctx.scene.reenter();
         }
     });
@@ -105,7 +104,7 @@ const createTicketScene = () => {
             ctx.reply("Часть обращения сохранена. Вы можете продолжать добавлять информацию или нажать 'Подтвердить'.", Markup.keyboard(['Подтвердить', 'Назад']).oneTime().resize());
         } catch (e) {
             ctx.reply("Ошибка!");
-            console.log(e.message);
+            console.error(e.message);
             return ctx.scene.reenter();
         }
     });

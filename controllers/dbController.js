@@ -151,6 +151,26 @@ async function getRoomsReport(req, res, next) {
     }
 }
 
+async function getRoomsReportMiddleware(req, res, next) {
+    try {
+        const base = req.params.base;
+        let baseArr = [];
+        if (base == 'depot') {
+            baseArr.push('ДЕПО АО');
+        } else if (base == 'gagarinsky') {
+            baseArr.push('ГАГАРИНСКИЙ ПКЦ ООО');
+        } else if (base == 'yujnaya') {
+            baseArr.push('База Южная ООО');
+            baseArr.push('Строительная База "Южная" ООО');
+        }
+        const rooms = await roomsService.getReport(baseArr);
+        req.rooms = rooms.data;
+        next();
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function getRoomsById(req, res, next) {
     try {
         const id = req.params.id;
@@ -300,6 +320,7 @@ module.exports = {
     getRoomsTypes,
     getRoomsLiters,
     getRoomsReport,
+    getRoomsReportMiddleware,
     getRoomsById,
     getRoomsByBuilding,
     getRoomsByComplex,
