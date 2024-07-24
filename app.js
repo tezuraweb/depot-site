@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const config = require('./config/appConfig');
 const routes = require('./routes/index');
 const errorHandler = require('./middlewares/errorHandler');
-const bot = require('./bot/index');
 
 const app = new express();
 
@@ -23,12 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('static'));
 app.use('/', routes);
 app.use(errorHandler);
-
-try {
-    bot.launch();
-} catch (error) {
-    console.log(`Error occured while launching bot: ${error}`)
-}
 
 app.listen(config.port, () => {
     console.log(`Server is running on port ${config.port}`);
